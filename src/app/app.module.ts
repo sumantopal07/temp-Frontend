@@ -35,7 +35,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSortModule } from '@angular/material/sort';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DeleteComponent } from './Components/DialogBox/delete/delete.component'; 
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TrendsComponent,
     HomeComponent,
     LoginComponent,
+    DeleteComponent,
   ],
   imports: [
     BrowserAnimationsModule,

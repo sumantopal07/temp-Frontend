@@ -108,14 +108,14 @@ export class OppComponent implements OnInit {
   }
   onDeleteClick(grad) {
     // this.oppService.populateFormId(grad);
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.width = '30%';
-    this.dialog.open(DeleteGradComponent, dialogConfig);
-    this.dialog.afterAllClosed.subscribe((res) => {
-      this.getGrads();
-    });
+    // const dialogConfig = new MatDialogConfig();
+    // dialogConfig.disableClose = true;
+    // dialogConfig.autoFocus = true;
+    // dialogConfig.width = '30%';
+    // this.dialog.open(DeleteGradComponent, dialogConfig);
+    // this.dialog.afterAllClosed.subscribe((res) => {
+    //   this.getGrads();
+    // });
   }
 
   public getGrads(): void {
