@@ -53,19 +53,19 @@ export class OppComponent implements OnInit {
   }
 
   onAddClick(): void {
-  //   this.oppService.initializeFormGroup();
-  //   const dialogConfig = new MatDialogConfig();
-  //   dialogConfig.disableClose = true;
-  //   dialogConfig.autoFocus = true;
-  //   dialogConfig.width = '50%';
-  //   dialogConfig.data = {
-  //     id: 1,
-  //     title: 'Add New Grad'
-  // };
-  //   this.dialog.open(AddOppComponent, dialogConfig);
-  //   this.dialog.afterAllClosed.subscribe((res) => {
-  //     this.getOpps();
-  //   });
+    this.oppService.initializeFormGroup();
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '50%';
+    dialogConfig.data = {
+      id: 1,
+      title: 'Add New Grad'
+  };
+    this.dialog.open(AddOppComponent, dialogConfig);
+    this.dialog.afterAllClosed.subscribe((res) => {
+      this.getOpps();
+    });
   }
   onUpdateClick(row) {}
   onInfoClick(row) {}

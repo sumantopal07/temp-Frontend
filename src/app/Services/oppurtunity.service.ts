@@ -21,8 +21,7 @@ export class OppurtunityService {
   private id: number;
   private formBuilder: any;
 
-  form: FormGroup = new FormGroup({
-    _key: new FormControl(null),
+  public form: FormGroup = new FormGroup({
     id: new FormControl(null),
     client: new FormControl('', Validators.required),
     date: new FormControl(''),
@@ -48,10 +47,10 @@ export class OppurtunityService {
   }
 
   getId = (): number => this.id;
+  getForm = (): FormGroup => this.form;
 
   initializeFormGroup(): void {
     this.form.setValue({
-      _key: null,
       id: null,
       email : null,
       client: null,
@@ -65,7 +64,6 @@ export class OppurtunityService {
   }
   populateForm(opp: OppModel, id: number): void {
     this.form.setValue({
-      _key: id,
       id: opp.oppId,
       email : opp.user.email,
       client: opp.client,

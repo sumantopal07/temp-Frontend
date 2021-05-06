@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,8 +29,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -37,6 +38,9 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSortModule } from '@angular/material/sort';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DeleteComponent } from './Components/DialogBox/delete/delete.component';
+import { MatTreeModule } from '@angular/material/tree';
+import { NavbarModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
+import { AddOppComponent } from './Components/DialogBox/add-opp/add-opp.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +51,7 @@ import { DeleteComponent } from './Components/DialogBox/delete/delete.component'
     HomeComponent,
     LoginComponent,
     DeleteComponent,
+    AddOppComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -74,7 +79,21 @@ import { DeleteComponent } from './Components/DialogBox/delete/delete.component'
     HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    MatTreeModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    NavbarModule,
+    WavesModule,
+    ButtonsModule,
+    MatSnackBarModule,
+    MatIconModule,
   ],
   providers: [
     {
@@ -93,5 +112,6 @@ import { DeleteComponent } from './Components/DialogBox/delete/delete.component'
     },
   ],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}
