@@ -1,11 +1,12 @@
+import User from './User.model';
 export default interface Opp {
-  opp_id: number;
-  client: string;
-  date: string;
-  demand: number;
-  description: string;
+  oppId: number;
+  user: User;
   location: string;
-  min_exp: number;
   skill: string;
-  user_id: number;
+  client: string;
+  description: string;
+  date: string;
+  min_exp: number;
+  demand: number;
 }

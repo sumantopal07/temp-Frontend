@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import {AfterViewInit, ViewChild} from '@angular/core';
+import { AfterViewInit, ViewChild } from '@angular/core';
 
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { OppurtunityService } from 'src/app/Services/oppurtunity.service';
 import Opp from '../../../Models/OppModel.model';
+import { DeleteComponent } from '../../DialogBox/delete/delete.component';
+import { AddOppComponent } from '../../DialogBox/add-opp/add-opp.component';
 
 @Component({
   selector: 'app-opp',
@@ -28,11 +30,58 @@ export class OppComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  searchKey: String;
+  searchKey: string;
 
-  constructor( private dialog: MatDialog, private oppService: OppurtunityService) {}
+  constructor(
+    private dialog: MatDialog,
+    private oppService: OppurtunityService
+  ) {}
 
   ngOnInit(): void {
+    this.getOpps();
+  }
+  onSearchClear(): void {
+    this.searchKey = '';
+    this.applyFilter();
+  }
+
+  applyFilter(): void {
+    this.opps.filter = this.searchKey.trim().toLowerCase();
+    if (this.opps.paginator) {
+      this.opps.paginator.firstPage();
+    }
+  }
+
+  onAddClick(): void {
+  //   this.oppService.initializeFormGroup();
+  //   const dialogConfig = new MatDialogConfig();
+  //   dialogConfig.disableClose = true;
+  //   dialogConfig.autoFocus = true;
+  //   dialogConfig.width = '50%';
+  //   dialogConfig.data = {
+  //     id: 1,
+  //     title: 'Add New Grad'
+  // };
+  //   this.dialog.open(AddOppComponent, dialogConfig);
+  //   this.dialog.afterAllClosed.subscribe((res) => {
+  //     this.getOpps();
+  //   });
+  }
+  onUpdateClick(row) {}
+  onInfoClick(row) {}
+  onDeleteClick(opp) {
+    this.oppService.setId(opp);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '30%';
+    this.dialog.open(DeleteComponent, dialogConfig);
+    this.dialog.afterAllClosed.subscribe((res) => {
+      this.getOpps();
+    });
+  }
+
+  public getOpps(): void {
     this.oppService.getOpps().subscribe(
       (response: Opp[]) => {
         console.log(response);
@@ -49,90 +98,5 @@ export class OppComponent implements OnInit {
         alert(err.message);
       }
     );
-  }
-
-  onSearchClear() {
-    // this.searchKey = '';
-    // this.applyFilter();
-  }
-  applyFilter() {
-    // const filterValue = (event.target as HTMLInputElement).value;
-    // this.grads.filter = this.searchKey.trim().toLowerCase();
-
-    // if (this.grads.paginator) {
-    //   this.grads.paginator.firstPage();
-    // }
-  }
-  onAddClick() {
-    // this.gradService.initializeFormGroup();
-    // const dialogConfig = new MatDialogConfig();
-    // dialogConfig.disableClose = true;
-    // dialogConfig.autoFocus = true;
-    // dialogConfig.width = '50%';
-    // dialogConfig.data = {
-    //   id: 1,
-    //   title: 'Add New Grad',
-    // };
-    // // this.dialog.open(AddGradComponent, dialogConfig);
-    // this.dialog.afterAllClosed.subscribe((res) => {
-    //   //this.getGrads();
-    // });
-  }
-  onUpdateClick(row) {
-    // console.log(JSON.stringify(row));
-    // // this.gradService.populateForm(row, row.id);
-    // const dialogConfig = new MatDialogConfig();
-    // dialogConfig.data = {
-    //   id: 3,
-    //   title: 'Update Grad',
-    // };
-    // dialogConfig.disableClose = true;
-    // dialogConfig.autoFocus = true;
-    // dialogConfig.width = '50%';
-    // // this.dialog.open(AddGradComponent, dialogConfig);
-    // this.dialog.afterAllClosed.subscribe((res) => {
-    //   this.getGrads();
-    // });
-  }
-  onInfoClick(row) {
-    // console.log(JSON.stringify(row));
-    // // this.gradService.populateForm(row, row.id);
-    // const dialogConfig = new MatDialogConfig();
-    // dialogConfig.data = {
-    //   grad: row,
-    // };
-    // dialogConfig.disableClose = true;
-    // dialogConfig.autoFocus = true;
-    // dialogConfig.width = '50%';
-    // this.dialog.open(DetailGradComponent, dialogConfig);
-  }
-  onDeleteClick(grad) {
-    // this.oppService.populateFormId(grad);
-    // const dialogConfig = new MatDialogConfig();
-    // dialogConfig.disableClose = true;
-    // dialogConfig.autoFocus = true;
-    // dialogConfig.width = '30%';
-    // this.dialog.open(DeleteGradComponent, dialogConfig);
-    // this.dialog.afterAllClosed.subscribe((res) => {
-    //   this.getGrads();
-    // });
-  }
-
-  public getGrads(): void {
-    // this.gradService.getGrads().subscribe(
-    //   (respone: Grad[]) => {
-    //     this.grads = new MatTableDataSource(respone);
-    //     // this.grads.sort=this.sort;
-    //     // this.grads.paginator=this.paginator;
-    //     // this.grads.filterPredicate=(data,filter)=>{
-    //     //     return this.displayedColumns.some(ele=>{
-    //     //       return ele!='actions'&& data[ele].toLowerCase().indexOf(filter)!=-1;
-    //     //     })
-    //     // };
-    //   },
-    //   (err: HttpErrorResponse) => {
-    //     alert(err.message);
-    //   }
-    // );
   }
 }

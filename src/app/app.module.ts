@@ -36,7 +36,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSortModule } from '@angular/material/sort';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DeleteComponent } from './Components/DialogBox/delete/delete.component'; 
+import { DeleteComponent } from './Components/DialogBox/delete/delete.component';
 
 @NgModule({
   declarations: [
