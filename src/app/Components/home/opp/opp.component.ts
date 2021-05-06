@@ -25,6 +25,8 @@ export class OppComponent implements OnInit {
     'description',
     'client',
     'actions',
+    'Min Experience',
+    'Vacancies'
   ];
   opps: MatTableDataSource<any>;
 
@@ -60,16 +62,30 @@ export class OppComponent implements OnInit {
     dialogConfig.width = '50%';
     dialogConfig.data = {
       id: 1,
-      title: 'Add New Grad'
-  };
+      title: 'Add New Grad',
+    };
     this.dialog.open(AddOppComponent, dialogConfig);
     this.dialog.afterAllClosed.subscribe((res) => {
       this.getOpps();
     });
   }
-  onUpdateClick(row) {}
-  onInfoClick(row) {}
-  onDeleteClick(opp) {
+  onUpdateClick(row): void {
+    console.log(JSON.stringify(row));
+    this.oppService.populateForm(row, row.oppId);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      id: 3,
+      title: 'Update Grad',
+    };
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '50%';
+    this.dialog.open(AddOppComponent, dialogConfig);
+    this.dialog.afterAllClosed.subscribe((res) => {
+      this.getOpps();
+    });
+  }
+  onDeleteClick(opp): void {
     this.oppService.setId(opp);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;

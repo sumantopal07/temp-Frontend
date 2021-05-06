@@ -7,6 +7,6 @@ export default interface Opp {
   client: string;
   description: string;
   date: string;
-  min_exp: number;
+  minExp: number;
   demand: number;
 }

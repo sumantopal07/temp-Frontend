@@ -23,23 +23,31 @@ export class OppurtunityService {
 
   public form: FormGroup = new FormGroup({
     id: new FormControl(null),
+    email: new FormControl(null),
     client: new FormControl('', Validators.required),
-    date: new FormControl(''),
+    date: new FormControl('', Validators.required),
     demand: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
-    min_exp: new FormControl('', Validators.required),
+    minExp: new FormControl('', Validators.required),
     location: new FormControl('', Validators.required),
     skill: new FormControl(''),
   });
+
+  public addOpps(opp: OppModel): Observable<OppModel>{
+    return this.http.post<OppModel>(`${this.apiServerUrl}/addOppurtunity`, opp);
+  }
+
+
+  public updateOpps(opp: OppModel): Observable<OppModel>{
+    return this.http.put<OppModel>(`${this.apiServerUrl}/updateOppurtunity`, opp);
+  }
 
   public getOpps(): Observable<OppModel[]> {
     return this.http.get<OppModel[]>(`${this.apiServerUrl}/getOppurtunities`);
   }
 
-  public deleteOpps(oppId: number): Observable<any> {
-    return this.http.post<any>(`${this.apiServerUrl}/delete`, oppId, {
-      responseType: 'json',
-    });
+  public deleteOpps(oppId: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiServerUrl}/delete/${oppId}`);
   }
 
   setId = (opp: OppModel): void => {
@@ -52,12 +60,12 @@ export class OppurtunityService {
   initializeFormGroup(): void {
     this.form.setValue({
       id: null,
-      email : null,
+      email : JSON.parse(localStorage.getItem('user')).email,
       client: null,
       date: null,
       demand: null,
       description: null,
-      min_exp: null,
+      minExp: null,
       location: null,
       skill: null,
     });
@@ -65,12 +73,12 @@ export class OppurtunityService {
   populateForm(opp: OppModel, id: number): void {
     this.form.setValue({
       id: opp.oppId,
-      email : opp.user.email,
+      email : JSON.parse(localStorage.getItem('user')).email,
       client: opp.client,
       date: opp.date,
       demand: opp.demand,
       description: opp.description,
-      min_exp: opp.min_exp,
+      minExp: opp.minExp,
       location: opp.location,
       skill: opp.skill,
     });

@@ -6,7 +6,6 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OppComponent } from './Components/home/opp/opp.component';
-import { SearchComponent } from './Components/home/search/search.component';
 import { TrendsComponent } from './Components/home/trends/trends.component';
 import { HomeComponent } from './Components/home/home.component';
 import { LoginComponent } from './Components/login/login.component';
@@ -41,17 +40,18 @@ import { DeleteComponent } from './Components/DialogBox/delete/delete.component'
 import { MatTreeModule } from '@angular/material/tree';
 import { NavbarModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
 import { AddOppComponent } from './Components/DialogBox/add-opp/add-opp.component';
+import { PieChartComponent } from './Components/home/trends/graphs/pie-chart/pie-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     OppComponent,
-    SearchComponent,
     TrendsComponent,
     HomeComponent,
     LoginComponent,
     DeleteComponent,
-    AddOppComponent
+    AddOppComponent,
+    PieChartComponent
   ],
   imports: [
     BrowserAnimationsModule,

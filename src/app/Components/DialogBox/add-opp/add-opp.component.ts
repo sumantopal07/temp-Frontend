@@ -12,7 +12,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class AddOppComponent implements OnInit {
   title: string;
-  createform: FormGroup;
   dId: any = 0;
   constructor(
     public oppService: OppurtunityService,
@@ -22,7 +21,6 @@ export class AddOppComponent implements OnInit {
   ) {
     this.title = data.title;
     this.dId = data.id;
-    this.createform = oppService.getForm();
   }
 
   ngOnInit(): void {}
@@ -33,17 +31,17 @@ export class AddOppComponent implements OnInit {
   }
   onSubmit(): void {
     if (this.oppService.form.valid) {
-      if (!this.oppService.form.get('$key').value) {
+      if (!this.oppService.form.get('id').value) {
         console.log('nokey');
         this.oppService
-          .addGrads(this.oppService.form.value)
+          .addOpps(this.oppService.form.value)
           .subscribe((res) => {
             console.log(res);
           });
         this.refresh();
       } else {
         this.oppService
-          .updateGrads(this.oppService.form.value)
+          .updateOpps(this.oppService.form.value)
           .subscribe((res) => {
             console.log(res);
           });
@@ -58,8 +56,6 @@ export class AddOppComponent implements OnInit {
     this.dialogRef.close();
   }
   refresh(): void {
-    this.oppService.form.reset();
-    this.oppService.initializeFormGroup();
     this.notificationService.success(
       'Updated successfully Refresh Page if Change not reflected'
     );

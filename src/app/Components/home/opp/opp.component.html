@@ -10,8 +10,7 @@
 
 
         <input matInput type="text" [(ngModel)]="searchKey"
-            placeholder="Search for date/location/skills/description/client" autocomplete="off"
-            (keyup)="applyFilter()">
+            placeholder="Search for date/location/skills/description/client" autocomplete="off" (keyup)="applyFilter()">
         <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="onSearchClear()">
             <mat-icon>close</mat-icon>
         </button>
@@ -49,7 +48,17 @@
             <mat-cell *matCellDef="let element"> {{element.client}} </mat-cell>
 
         </ng-container>
+        <ng-container matColumnDef="Min Experience">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>YOE</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.minExp}} </mat-cell>
 
+        </ng-container>
+        <ng-container matColumnDef="Vacancies">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Vancancies</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.demand}} </mat-cell>
+
+        </ng-container>
+        
         <ng-container class="actions" matColumnDef="actions">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let row">
