@@ -41,6 +41,8 @@ import { MatTreeModule } from '@angular/material/tree';
 import { NavbarModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
 import { AddOppComponent } from './Components/DialogBox/add-opp/add-opp.component';
 import { PieChartComponent } from './Components/home/trends/graphs/pie-chart/pie-chart.component';
+import { InterceptorInterceptor } from './Interceptor/interceptor.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -110,6 +112,11 @@ import { PieChartComponent } from './Components/home/trends/graphs/pie-chart/pie
         ],
       } as SocialAuthServiceConfig,
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

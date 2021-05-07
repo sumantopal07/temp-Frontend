@@ -5,6 +5,7 @@ import { HomeComponent } from './Components/home/home.component';
 import { OppComponent } from './Components/home/opp/opp.component';
 import { TrendsComponent } from './Components/home/trends/trends.component';
 import { LoginComponent } from './Components/login/login.component';
+import { GuardGuard } from './Guard/guard.guard';
 
 const routes: Routes = [
   {
@@ -14,7 +15,9 @@ const routes: Routes = [
   {
     path: 'home',
     component: OppComponent,
+    canActivate: [GuardGuard]
   },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({

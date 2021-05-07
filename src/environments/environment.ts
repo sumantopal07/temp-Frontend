@@ -1,7 +1,9 @@
 
 export const environment = {
   production: false,
-  BaseUrl: 'http://localhost:8080/api/allowed'
+  auth : 'http://localhost:8081/api/allowed',
+  BaseUrl : 'http://localhost:8081/api/restriction',
+  secure: false
 };
 
 
