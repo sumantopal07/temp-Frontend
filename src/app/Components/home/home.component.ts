@@ -15,4 +15,7 @@ export class HomeComponent implements OnInit {
     localStorage.removeItem('user');
     this.router.navigate(['']);
   }
+  trend(): any {
+    this.router.navigate(['trend']);
+  }
 }

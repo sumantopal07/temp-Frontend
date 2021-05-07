@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { OppurtunityService } from 'src/app/Services/oppurtunity.service';
+import { OppurtunityService } from 'src/app/Services/CRUD Operations/oppurtunity.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { NotificationService } from 'src/app/Services/notification.service';
+import { NotificationService } from 'src/app/Services/Notification/notification.service';
 import { OppComponent } from '../../home/opp/opp.component';
 import { FormControl, FormGroup } from '@angular/forms';
 

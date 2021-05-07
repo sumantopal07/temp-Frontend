@@ -17,6 +17,11 @@ const routes: Routes = [
     component: OppComponent,
     canActivate: [GuardGuard]
   },
+  {
+    path: 'trend',
+    component: TrendsComponent,
+    canActivate: [GuardGuard]
+  },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 

@@ -18,9 +18,10 @@ import {
 } from '@angular/forms';
 
 import { Router } from '@angular/router';
-import { LoginService } from 'src/app/Services/login.service';
+import { LoginService } from 'src/app/Services/LoginService/login.service';
 import Login from 'src/app/Models/Login.Model';
 import Token from 'src/app/Models/Token.model';
+import { NotificationService } from 'src/app/Services/Notification/notification.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -30,38 +31,34 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: SocialAuthService,
-    private loginService: LoginService
-  ) {
-  }
+    private loginService: LoginService,
+    private notificationService: NotificationService
+  ) {}
 
   user: SocialUser | undefined;
   req: Login;
 
-  ngOnInit(): void {
-    if (localStorage.getItem('user')) {
-      this.router.navigate(['/home']);
-    }
-  }
+  ngOnInit(): void {}
   signInWithGoogle(): void {
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
     this.authService.authState.subscribe((response) => {
       this.req = { email: response.email };
-      this.loginService.login(this.req).subscribe((token: Token) => {
-        localStorage.setItem('user', JSON.stringify(token));
-        this.router.navigate(['/home']);
-      });
+      this.loginService.login(this.req).subscribe(
+        (token: Token) => {
+          localStorage.setItem('user', JSON.stringify(token));
+          this.router.navigate(['/home']);
+        },
+        (error) => {
+          this.notificationService.success('Permission Denied!');
+        }
+      );
     });
   }
 
   signOut(): any {
-    this.authService.signOut().then(
-      () => {
-        localStorage.removeItem('user');
-        this.router.navigate(['']);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.authService.signOut().then(() => {
+      localStorage.removeItem('user');
+      this.router.navigate(['']);
+    });
   }
 }

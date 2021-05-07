@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import OppModel from '../Models/OppModel.model';
+import OppModel from '../../Models/OppModel.model';
 
 @Injectable({
   providedIn: 'root',

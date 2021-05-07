@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { OppurtunityService } from 'src/app/Services/oppurtunity.service';
+import { OppurtunityService } from 'src/app/Services/CRUD Operations/oppurtunity.service';
 import { MatDialogRef } from '@angular/material/dialog';
 import { OppComponent } from '../../home/opp/opp.component';
-import { NotificationService } from 'src/app/Services/notification.service';
+import { NotificationService } from 'src/app/Services/Notification/notification.service';
 
 @Component({
   selector: 'app-delete',

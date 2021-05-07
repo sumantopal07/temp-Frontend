@@ -7,7 +7,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { OppurtunityService } from 'src/app/Services/oppurtunity.service';
+import { OppurtunityService } from 'src/app/Services/CRUD Operations/oppurtunity.service';
 import Opp from '../../../Models/OppModel.model';
 import { DeleteComponent } from '../../DialogBox/delete/delete.component';
 import { AddOppComponent } from '../../DialogBox/add-opp/add-opp.component';

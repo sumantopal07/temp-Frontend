@@ -40,10 +40,10 @@ import { DeleteComponent } from './Components/DialogBox/delete/delete.component'
 import { MatTreeModule } from '@angular/material/tree';
 import { NavbarModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md';
 import { AddOppComponent } from './Components/DialogBox/add-opp/add-opp.component';
-import { PieChartComponent } from './Components/home/trends/graphs/pie-chart/pie-chart.component';
 import { InterceptorInterceptor } from './Interceptor/interceptor.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-
+import { GoogleChartsModule } from 'angular-google-charts';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,11 +52,12 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     HomeComponent,
     LoginComponent,
     DeleteComponent,
-    AddOppComponent,
-    PieChartComponent
+    AddOppComponent
   ],
   imports: [
     BrowserAnimationsModule,
+    NgxChartsModule,
+    GoogleChartsModule,
     BrowserModule,
     AppRoutingModule,
     SocialLoginModule,
