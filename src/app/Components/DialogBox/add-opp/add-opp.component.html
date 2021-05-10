@@ -10,7 +10,7 @@
     <div>
       <mat-form-field class="input-div" appearance="fill">
         <mat-label>Joining Date</mat-label>
-        <input formControlName="date" type="date" matInput placeholder="">
+        <input [min]="minDate" [max]="maxDate" formControlName="date" type="date" matInput placeholder="">
         <mat-error>This field is mandatory.</mat-error>
       </mat-form-field>
     </div>

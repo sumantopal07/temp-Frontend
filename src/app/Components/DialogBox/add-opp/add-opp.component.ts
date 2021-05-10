@@ -4,6 +4,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NotificationService } from 'src/app/Services/Notification/notification.service';
 import { OppComponent } from '../../home/opp/opp.component';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Moment } from 'moment';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-add-opp',
@@ -22,8 +24,16 @@ export class AddOppComponent implements OnInit {
     this.title = data.title;
     this.dId = data.id;
   }
+  minDate: Moment;
+  maxDate: Moment;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const currentYear = moment().year();
+    const currentMonth = moment().month();
+    const currentDate = moment().date();
+    this.minDate = moment([currentYear ,currentMonth, currentDate]);
+    //this.maxDate = moment([currentYear + 1, 11, 31]);
+  }
 
   onClear(): void {
     this.oppService.form.reset();
@@ -33,11 +43,9 @@ export class AddOppComponent implements OnInit {
     if (this.oppService.form.valid) {
       if (!this.oppService.form.get('id').value) {
         console.log('nokey');
-        this.oppService
-          .addOpps(this.oppService.form.value)
-          .subscribe((res) => {
-            console.log(res);
-          });
+        this.oppService.addOpps(this.oppService.form.value).subscribe((res) => {
+          console.log(res);
+        });
         this.refresh();
       } else {
         this.oppService

@@ -33,8 +33,9 @@ export class InterceptorInterceptor implements HttpInterceptor {
         () => {},
         (err: any) => {
           if (err instanceof HttpErrorResponse) {
-            if (err.status === 401) {
+            if (err.status >= 400 && err.status <= 599) {
               this.router.navigate(['']);
+              
               alert('Session Expired!!\nLogin Again.');
             }
             return;

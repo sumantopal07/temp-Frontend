@@ -30,7 +30,7 @@ export class OppurtunityService {
     description: new FormControl('', Validators.required),
     minExp: new FormControl('', Validators.required),
     location: new FormControl('', Validators.required),
-    skill: new FormControl(''),
+    skill: new FormControl('', Validators.required),
   });
 
   public addOpps(opp: OppModel): Observable<OppModel>{

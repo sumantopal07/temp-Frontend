@@ -39,8 +39,8 @@ export class LoginComponent implements OnInit {
   req: Login;
 
   ngOnInit(): void {}
-  signInWithGoogle(): void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+  async signInWithGoogle(): Promise<void> {
+    await this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
     this.authService.authState.subscribe((response) => {
       this.req = { email: response.email };
       this.loginService.login(this.req).subscribe(
