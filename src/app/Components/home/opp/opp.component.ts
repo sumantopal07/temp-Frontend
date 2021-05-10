@@ -33,6 +33,7 @@ export class OppComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   searchKey: string;
+  noData = false;
 
   constructor(
     private dialog: MatDialog,
@@ -49,6 +50,7 @@ export class OppComponent implements OnInit {
 
   applyFilter(): void {
     this.opps.filter = this.searchKey.trim().toLowerCase();
+    this.noData = (this.opps.filteredData.length ===0)?true:false;
     if (this.opps.paginator) {
       this.opps.paginator.firstPage();
     }
@@ -70,7 +72,6 @@ export class OppComponent implements OnInit {
     });
   }
   onUpdateClick(row): void {
-    console.log(JSON.stringify(row));
     this.oppService.populateForm(row, row.oppId);
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
@@ -100,18 +101,19 @@ export class OppComponent implements OnInit {
   public getOpps(): void {
     this.oppService.getOpps().subscribe(
       (response: Opp[]) => {
-        console.log(response);
         this.opps = new MatTableDataSource(response);
         this.opps.sort = this.sort;
         this.opps.paginator = this.paginator;
         this.opps.filterPredicate = (data: any, filter) => {
-          console.log(filter);
+          console.log(filter,data);
           const dataStr = JSON.stringify(data).toLowerCase();
           return dataStr.indexOf(filter) !== -1;
         };
+        this.noData= (this.opps._filterData.length ===0)?true: false;
       },
       (err: HttpErrorResponse) => {
-        alert(err.message);
+        this.noData = true;
+        this.opps =new MatTableDataSource();
       }
     );
   }
