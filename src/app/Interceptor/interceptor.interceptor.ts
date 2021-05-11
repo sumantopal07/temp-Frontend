@@ -11,10 +11,11 @@ import {
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { NotificationService } from '../Services/Notification/notification.service';
 
 @Injectable()
 export class InterceptorInterceptor implements HttpInterceptor {
-  constructor(private router: Router) {}
+  constructor(private router: Router,private notification: NotificationService) {}
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
@@ -35,8 +36,9 @@ export class InterceptorInterceptor implements HttpInterceptor {
           if (err instanceof HttpErrorResponse) {
             if (err.status >= 400 && err.status <= 599) {
               this.router.navigate(['']);
-              
-              alert('Session Expired!!\nLogin Again.');
+              this.notification.success(
+                'Permision Denied'
+              );
             }
             return;
           }

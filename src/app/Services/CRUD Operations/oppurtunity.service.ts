@@ -26,9 +26,9 @@ export class OppurtunityService {
     email: new FormControl(null),
     client: new FormControl('', Validators.required),
     date: new FormControl('', Validators.required),
-    demand: new FormControl('', Validators.required),
+    demand: new FormControl('',  [Validators.min(0)]),
     description: new FormControl('', Validators.required),
-    minExp: new FormControl('', Validators.required),
+    minExp: new FormControl('', [Validators.min(0)]),
     location: new FormControl('', Validators.required),
     skill: new FormControl('', Validators.required),
   });

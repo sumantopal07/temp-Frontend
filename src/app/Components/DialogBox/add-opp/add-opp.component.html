@@ -10,49 +10,49 @@
     <div>
       <mat-form-field class="input-div" appearance="fill">
         <mat-label>Joining Date</mat-label>
-        <input [min]="minDate" [max]="maxDate" formControlName="date" type="date" matInput placeholder="">
+        <input [min]="getToday()" formControlName="date"  type="date" matInput placeholder="">
         <mat-error>This field is mandatory.</mat-error>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field class="input-div" appearance="fill">
         <mat-label>Year of Experience</mat-label>
-        <input formControlName="minExp" type="number" matInput placeholder="">
+        <input formControlName="minExp" type="number" min="0" matInput placeholder="">
         <mat-error>This field is mandatory.</mat-error>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field class="input-div" appearance="fill">
         <mat-label>required candidates</mat-label>
-        <input formControlName="demand" type="number" matInput placeholder="">
+        <input formControlName="demand" type="number" min="0" matInput placeholder="">
         <mat-error>This field is mandatory.</mat-error>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field class="input-div" appearance="fill">
         <mat-label>Description</mat-label>
-        <input formControlName="description" matInput placeholder=".....">
+        <input formControlName="description" matInput placeholder="Frontend or Backend Engineer">
         <mat-error>This field is mandatory.</mat-error>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field class="input-div" appearance="fill">
         <mat-label>Location</mat-label>
-        <input formControlName="location" matInput placeholder=".....">
+        <input formControlName="location" matInput placeholder="Mumbai,Hyderabad,Bangalore..">
         <mat-error>This field is mandatory.</mat-error>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field class="input-div" appearance="fill">
         <mat-label>Client</mat-label>
-        <input formControlName="client" matInput placeholder=".....">
+        <input formControlName="client" matInput placeholder="Morgan Stanley,Prudential..">
         <mat-error>This field is mandatory.</mat-error>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field class="input-div" appearance="fill">
         <mat-label>Skills</mat-label>
-        <input formControlName="skill" matInput placeholder=".....">
+        <input formControlName="skill" matInput placeholder="Angular,Kubernetes,Microservices...">
         <mat-error>This field is mandatory.</mat-error>
       </mat-form-field>
     </div>
